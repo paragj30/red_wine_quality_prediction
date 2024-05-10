@@ -1,7 +1,13 @@
+notebook
 pandas
 numpy
 seaborn
 matplotlib
-scikit-learn==1.4.2
-
+python-box==6.0.2
+pyYAML
+ensure==1.0.2
+joblib
+types-PyYAML
+Flask
+Flask-Cors
 -e .
