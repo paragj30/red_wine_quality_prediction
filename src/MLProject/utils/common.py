@@ -18,11 +18,9 @@ prod(2,3) will return 6
 and 
 prod(2,'3') will return 33.
 '''
-
 from box import ConfigBox #ease access of dictionary (d.key1)
 from pathlib import Path
 from typing import Any 
-
 
 
 @ensure_annotations

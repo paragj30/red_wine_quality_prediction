@@ -12,12 +12,18 @@ list_of_files = [
 
     f"src/{project_name}/components/__init__.py",
     f"src/{project_name}/components/data_ingestion.py",
+    f"src/{project_name}/components/data_validation..py",
     f"src/{project_name}/components/data_transformation.py",
     f"src/{project_name}/components/model_training.py",
+    f"src/{project_name}/components/model_evaluation.py",
 
     f"src/{project_name}/pipelines/__init__.py",
-    f"src/{project_name}/pipelines/training_pipeline.py",
-    f"src/{project_name}/pipelines/prediction_pipeline.py",
+    f"src/{project_name}/pipelines/prediction.py",
+    f"src/{project_name}/pipelines/stage_01_data_ingestion.py",
+    f"src/{project_name}/pipelines/stage_02_data_validation.py",
+    f"src/{project_name}/pipelines/stage_03_data_transformation.py",
+    f"src/{project_name}/pipelines/stage_04_model_training.py",
+    f"src/{project_name}/pipelines/stage_05_model_evaluation.py",
 
     f"src/{project_name}/utils/__init__.py",
     f"src/{project_name}/utils/common.py",
@@ -29,6 +35,15 @@ list_of_files = [
     f"src/{project_name}/entity/config_entity.py",
 
     f"src/{project_name}/constant/__init__.py",
+    
+    f"research/stage_01_data_ingestion.ipynb",
+    f"research/stage_02_data_validation.ipynb",
+    f"research/stage_03_data_transformation.ipynb",
+    f"research/stage_04_model_training.ipynb",
+    f"research/stage_05_model_evaluation.ipynb",
+    f"research/EDA.ipynb",
+    f"research/model_training_experiment.ipynb",
+
     "config/config.yaml",
     "params.yaml",
     "schema.yaml",
