@@ -1,8 +1,12 @@
 notebook
 pandas
 numpy
+scipy
 seaborn
 matplotlib
+scikit-learn==1.4.2
+catboost
+xgboost
 python-box==6.0.2
 pyYAML
 ensure==1.0.2
