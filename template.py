@@ -53,6 +53,7 @@ list_of_files = [
     "requirements.txt",
     "research/trials.ipynb",
     "templates/index.html",
+    "templates/results.html",
     "Dockerfile"
 ]
 
