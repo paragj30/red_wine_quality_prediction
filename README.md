@@ -45,11 +45,11 @@ Open the local host i.e., 0.0.0.0:8080
 
 
 
-# AWS-CICD-Deployment-with-Github-Actions
+## AWS-CICD-Deployment-with-Github-Actions
 
-## 1. Login to AWS console.
+### 1. Login to AWS console.
 
-## 2. Create IAM user for deployment
+### 2. Create IAM user for deployment
 
 	#Policy for Identity Access Management (IAM) User with specific access:
 
@@ -72,12 +72,12 @@ Open the local host i.e., 0.0.0.0:8080
 
 
 
-## 3. Create ECR repo to store/save docker image
+### 3. Create ECR repo to store/save docker image
     - Save the URI of the Docker image
 
-## 4. Create EC2 Virtual Machine (Ubuntu) 
+### 4. Create EC2 Virtual Machine (Ubuntu) 
 
-## 5. Open EC2 and Install docker in EC2 Machine:
+### 5. Open EC2 and Install docker in EC2 Machine:
 	
 	#optinal
 
@@ -95,11 +95,11 @@ Open the local host i.e., 0.0.0.0:8080
 
 	newgrp docker
 	
-# 6. Configure EC2 as self-hosted runner:
+### 6. Configure EC2 as self-hosted runner:
     setting>actions>runner>new self hosted runner> choose os> then run command one by one
 
 
-# 7. Setup github secrets:
+### 7. Setup github secrets:
 
     AWS_ACCESS_KEY_ID=
 
