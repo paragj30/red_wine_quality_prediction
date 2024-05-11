@@ -4,9 +4,12 @@ from typing import List
 __version__ = "0.0.0"
 REPO_NAME = "red_wine_qualit_prediction"
 AUTHOR_USER_NAME = "paragj30"
-SRC_REPO = "mlProject"
+SRC_REPO = "mlproject"
 AUTHOR_EMAIL = "paragj30@gmail.com"
 HYPEN_E_DOT='-e .'
+
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
 
 
 def get_requirements(file_path:str)->List[str]:
@@ -26,16 +29,18 @@ def get_requirements(file_path:str)->List[str]:
 
 
 setup(
-    name = "End-to-end-Wine-Quality-Prediction-ML-Project-Implementation",
+    name = REPO_NAME,
     version =__version__,
-    author= "Parag Jadhav",
+    author= AUTHOR_USER_NAME,
     author_email= AUTHOR_EMAIL,
     description="A small python package for ml app",
+    long_description=long_description,
+    long_description_content="text/markdown",
     url=f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}",
     project_urls={
         "Bug Tracker": f"https://github.com/{AUTHOR_USER_NAME}/{REPO_NAME}/issues",
     },
-    packages= find_packages(),
+    package_dir={"": "src"},
+    packages= find_packages(where="src"),
     install_requires = get_requirements('requirements.txt')    
-
 )
