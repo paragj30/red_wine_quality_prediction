@@ -37,5 +37,6 @@ python app.py
 Open the local host i.e., 0.0.0.0:8080
 ```
 
-https://getbootstrap.com/docs/4.0/components/forms/
-https://colorlib.com/wp/themes/unapp/
+## HTML and CSS Template example:
+1. https://getbootstrap.com/docs/4.0/components/forms/
+2. https://colorlib.com/wp/themes/unapp/
