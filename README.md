@@ -18,11 +18,15 @@
 ### STEPS:
 
 ```bash
-conda create -p venv python=3.10
+conda create -p venv python=3.10 -y
 ```
 
 ```bash
-conda activate venv
+conda activate venv/
+```
+
+```bash
+git clone https://github.com/paragj30/red_wine_quality_prediction.git
 ```
 
 ```bash
