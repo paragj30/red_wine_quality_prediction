@@ -47,6 +47,8 @@ Open the local host i.e., 0.0.0.0:8080
 
 ## AWS-CICD-Deployment-with-Github-Actions
 
+### 0. Create the Dockerfile and CICD.yaml file
+
 ### 1. Login to AWS console.
 
 ### 2. Create IAM user for deployment
@@ -56,6 +58,113 @@ Open the local host i.e., 0.0.0.0:8080
 	1. AmazonEC2ContainerRegistryFullAccess: ECR Access: Elastic Container registry to save your docker image in AWS.
 
 	2. AmazonEC2FullAccess: EC2 access : It is virtual machine.
+
+
+### 2. Create and download the Access key and Secret access key to authenticate the GitHub Action with AWS account.
+
+    1. AWS_ACCESS_KEY_ID
+
+    2. AWS_SECRET_ACCESS_KEY
+
+
+### 3. Create ECR repository to store/save docker image
+    - AWS_ECR_LOGIN_URI: Save the URI of our docker repository. This repository will be accessible to GitHub Action through this URI.
+
+    - ECR_REPOSITORY_NAME: Save the name of the docker repository.
+
+
+
+### 4. Create EC2 Virtual Machine (Ubuntu) 
+
+	1. Select the "Ubuntu" OS Image as it is a lightweight virtual machine compared to the Windows VM.
+
+	2. Select the Ubuntu Server LTS (free tier) with 64-bit architecture. 
+
+	3. Select the Instance Type (Configurations of the Ubuntu VM Server) RAM, CPU and memory
+
+	4. Generate the Key pair (.pem file) to securly connect to the EC2 Instance via PuttyGen/Mobaxtrem.
+
+	5. Create a Security group by selecting the SSH, HTTP and HTTPS traffic from the internet. This group is a firewall that controls the traffic of the EC2 Instance.
+
+	6. Launch the EC2 Instance.
+
+    6. Connect to EC2 Instance using EC2 Instance Connect(launch terminal on tab) or SSH Client(3rd party client like PuttyGen/Mobaxtrem).
+ 
+ 
+
+### 5. Open EC2 and Install docker in EC2 Machine:
+	
+    #check if any external packages are installed or not
+    ls
+
+    clear 
+
+	#update the Virtual machine instance
+
+	sudo apt-get update -y #To update the all package manager and dependencies
+
+	sudo apt-get upgrade #To install the package manager and dependencies
+
+    clear
+	
+	#required
+
+    docker --version #To check if docker is installed or not
+
+	curl -fsSL https://get.docker.com -o get-docker.sh #To download the docker in the EC2 virtual machine instance
+
+    ls #To check if docker.sh file is downloaded or not. docker.sh file will have all the links and command for the docker download and installtion.
+
+    cat get-docker.sh #To open and read the docker.sh file.
+
+	sudo sh get-docker.sh #To run the docker.sh file. This will trigger the installation of docker.
+
+	sudo usermod -aG docker ubuntu
+
+	newgrp docker
+	
+    docker --version 
+
+    docker ps #To check the docker images 
+
+
+
+### 6. Configure EC2 as self-hosted runner:
+    #Self-hosted runner is a another VM Instance present on GitHub. So we will make a EC2 Instance as Self-hosted runner, that will make a connection with GitHub to pull the updated changes from GitHub to EC2 Instance.
+
+    github_project>Setting>Actions>Runner>New self-hosted runner> choose os> then copy, paste and run command one by one on 'EC2 Instance Connect Terminal' to make the connection with GitHub.
+
+    ```bash
+    Enter the name of runner: self-hosted
+    ```
+
+    Make sure that the status of the 'self-hosted' runner is always "Idle": GitHub is connected to the EC2 Instance.
+
+
+
+### 7. Setup github secrets:
+
+    # So that GitHub can access the EC2 Instance.
+
+    github_project>Setting>Actions>Secrets and variables > Actions > New repository secret > Add the below informations:
+ 
+    AWS_ACCESS_KEY_ID=
+
+    AWS_SECRET_ACCESS_KEY=
+
+    AWS_REGION = us-east-1
+
+    AWS_ECR_LOGIN_URI = paste the URI of the Docker repository present inside the ECR.
+
+    ECR_REPOSITORY_NAME = simple-app
+
+
+
+### 8. Setup .github/workflows directory inside the GitHub repository:
+
+    -By default GitHub Actions will search the '.github/workflows' directory.
+
+    -Create the CICD.yaml and define workflow in that file.
 
 
 	#Description: About the deployment
@@ -70,43 +179,3 @@ Open the local host i.e., 0.0.0.0:8080
 
 	5. Lauch your docker image in EC2 Instance
 
-
-
-### 3. Create ECR repo to store/save docker image
-    - Save the URI of the Docker image
-
-### 4. Create EC2 Virtual Machine (Ubuntu) 
-
-### 5. Open EC2 and Install docker in EC2 Machine:
-	
-	#optinal
-
-	sudo apt-get update -y
-
-	sudo apt-get upgrade
-	
-	#required
-
-	curl -fsSL https://get.docker.com -o get-docker.sh
-
-	sudo sh get-docker.sh
-
-	sudo usermod -aG docker ubuntu
-
-	newgrp docker
-	
-### 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
-
-
-### 7. Setup github secrets:
-
-    AWS_ACCESS_KEY_ID=
-
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app

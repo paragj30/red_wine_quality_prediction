@@ -7,7 +7,7 @@ logging.basicConfig(level=logging.INFO, format='[%(asctime)s]: %(message)s:')
 project_name = "mlproject"
 
 list_of_files = [
-    ".github/workflows/.gitkeep",
+    ".github/workflows/CICD.yaml",
     f"src/{project_name}/__init__.py", #constructor needed for installing folder as a package
 
     f"src/{project_name}/components/__init__.py",
