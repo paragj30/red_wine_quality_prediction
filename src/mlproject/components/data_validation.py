@@ -2,6 +2,8 @@ import os
 from src.mlproject import logger
 from src.mlproject.entity.config_entity import DataValidationConfig
 import pandas as pd
+import sys
+from src.mlproject.exception import CustomException
 
 
 class DataValiadtion:
@@ -32,4 +34,4 @@ class DataValiadtion:
             return validation_status
         
         except Exception as e:
-            raise e
+            CustomException(e, sys)

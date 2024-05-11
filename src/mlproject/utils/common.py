@@ -9,6 +9,9 @@ from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
 from sklearn.model_selection import GridSearchCV
 import joblib
 from ensure import ensure_annotations 
+import sys
+from src.mlproject.exception import CustomException
+
 '''
 ensure_annotations: ensure that whatever arguments are of the same type are passed to the constructor.
 To avoid the confusion if we get some wrong output. 
@@ -45,8 +48,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
     except BoxValueError:
         raise ValueError("yaml file is empty")
     except Exception as e:
-        raise e
-    
+        CustomException(e, sys)
 
 
 @ensure_annotations
@@ -152,7 +154,7 @@ def evaluate_models(X_train, y_train,X_test,y_test,models,param):
     except BoxValueError:
         raise ValueError("Issue with the model training and evaluation part in common.py file")
     except Exception as e:
-        raise e
+        CustomException(e, sys)
 
 
 

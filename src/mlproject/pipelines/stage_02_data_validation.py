@@ -1,6 +1,8 @@
 from src.mlproject.config.configuration import ConfigurationManager
 from src.mlproject.components.data_validation import DataValiadtion
 from src.mlproject import logger
+import sys
+from src.mlproject.exception import CustomException
 
 
 STAGE_NAME = "Data Validation stage"
@@ -23,5 +25,5 @@ if __name__ == '__main__':
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
     except Exception as e:
-        logger.exception(e)
-        raise e
+        logger.info("Error occurred while executing stage {STAGE_NAME}")
+        CustomException(e, sys)

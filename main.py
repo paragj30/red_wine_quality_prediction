@@ -4,6 +4,8 @@ from src.mlproject.pipelines.stage_02_data_validation import DataValidationTrain
 from src.mlproject.pipelines.stage_03_data_transformation import DataTransformationTrainingPipeline
 from src.mlproject.pipelines.stage_04_model_training import ModelTrainerTrainingPipeline
 from src.mlproject.pipelines.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
+import sys
+from src.mlproject.exception import CustomException
 
 STAGE_NAME = "Data Ingestion stage"
 try:
@@ -12,8 +14,9 @@ try:
     data_ingestion_obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
-    logger.exception(e)
-    raise e
+    logger.info("Error in stage {STAGE_NAME}")
+    CustomException(e, sys)
+        
 
 
 
@@ -24,8 +27,8 @@ try:
     data_validation_obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
-    logger.exception(e)
-    raise e
+    logger.info("Error in stage {STAGE_NAME}")
+    CustomException(e, sys)
 
 
 
@@ -36,8 +39,8 @@ try:
     data_transform_obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
-    logger.exception(e)
-    raise e
+    logger.info("Error in stage {STAGE_NAME}")
+    CustomException(e, sys)
 
 
 
@@ -48,8 +51,9 @@ try:
     model_training_obj.main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
-    logger.exception(e)
-    raise e
+    logger.info("Error in stage {STAGE_NAME}")
+    CustomException(e, sys)
+
 
 STAGE_NAME = "Model evaluation stage"
 try:
@@ -58,5 +62,5 @@ try:
     model_eval_obj .main()
     logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
 except Exception as e:
-    logger.exception(e)
-    raise e
+    logger.info("Error in stage {STAGE_NAME}")
+    CustomException(e, sys)

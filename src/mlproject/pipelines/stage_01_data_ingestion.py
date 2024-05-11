@@ -1,6 +1,8 @@
 from src.mlproject.config.configuration import ConfigurationManager
 from src.mlproject.components.data_ingestion import DataIngestion
 from src.mlproject import logger
+import sys
+from src.mlproject.exception import CustomException
 
 
 STAGE_NAME = "Data Ingestion stage"
@@ -23,6 +25,7 @@ if __name__ == '__main__': #when we execute this file, our python code will star
         obj = DataIngestionTrainingPipeline()
         obj.main()
         logger.info(f">>>>>> stage {STAGE_NAME} completed <<<<<<\n\nx==========x")
+    
     except Exception as e:
-        logger.exception(e)
-        raise e
+        logger.info("Error occurred while executing stage {STAGE_NAME}")
+        CustomException(e, sys)
