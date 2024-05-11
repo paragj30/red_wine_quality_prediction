@@ -183,3 +183,8 @@ Open the local host i.e., 0.0.0.0:8080
     -Open EC2 Instance and copy the Pubic IPv4 address and paste it in the browser URL:8080
 
     -Successfully deployed the application.
+
+
+### 10. Change the URL.
+
+    -Buy the desried domain and change the URL to the new domain.
