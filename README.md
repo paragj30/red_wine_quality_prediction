@@ -98,6 +98,8 @@ Open the local host i.e., 0.0.0.0:8080
 
 	5. Create a Security group by selecting the SSH, HTTP and HTTPS traffic from the internet. This group is a firewall that controls the traffic of the EC2 Instance.
 
+        5.1 Edit the Indbound rules to  run the application. Select the "Custom TCP" and add the port number (8080).
+
 	6. Launch the EC2 Instance.
 
     6. Connect to EC2 Instance using EC2 Instance Connect(launch terminal on tab) or SSH Client(3rd party client like PuttyGen/Mobaxtrem).
@@ -105,7 +107,7 @@ Open the local host i.e., 0.0.0.0:8080
  
 
 ### 5. Open EC2 and Install docker in EC2 Machine:
-	
+	 
     ls #check if any external packages are installed or not
 
     clear 
@@ -174,3 +176,10 @@ Open the local host i.e., 0.0.0.0:8080
     -By default GitHub Actions will search the '.github/workflows' directory.
 
     -Create the CICD.yaml and define workflow in that file.
+
+
+### 9. Open the Public URL of the Application
+
+    -Open EC2 Instance and copy the Pubic IPv4 address and paste it in the browser URL:8080
+
+    -Successfully deployed the application.
