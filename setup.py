@@ -2,7 +2,7 @@ from setuptools import find_packages,setup
 from typing import List
 
 __version__ = "0.0.0"
-REPO_NAME = "red_wine_qualit_prediction"
+REPO_NAME = "red_wine_quality_prediction"
 AUTHOR_USER_NAME = "paragj30"
 SRC_REPO = "mlproject"
 AUTHOR_EMAIL = "paragj30@gmail.com"
