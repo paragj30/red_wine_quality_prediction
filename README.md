@@ -37,10 +37,16 @@ python app.py
 Open the local host i.e., 0.0.0.0:8080
 ```
 
-OR run using docker
+Or download the docker image:
 ```bash
-docker pull paragj30/wine-quality-prediction-app
+docker pull paragj30/wine-quality-prediction-app:latest
 ```
+
+And run the docker image:
+```bash
+docker run -d -p 8080:8080 paragj30/wine-quality-prediction-app
+```
+
 
 ## HTML and CSS Template example:
 1. https://getbootstrap.com/docs/4.0/components/forms/
@@ -50,15 +56,15 @@ docker pull paragj30/wine-quality-prediction-app
 
 ## Description: About the deployment
 
-	1. Build docker image of the source code
+1. Build docker image of the source code
 
-	2. Push your docker image to Elastic Container Registry (ECR) 
+2. Push your docker image to Elastic Container Registry (ECR) 
 
-	3. Launch Your EC2 Instance
+3. Launch Your EC2 Instance
 
-	4. Pull the image from ECR in EC2 Instance
+4. Pull the image from ECR in EC2 Instance
 
-	5. Lauch your docker image in EC2 Instance
+5. Lauch your docker image in EC2 Instance
 
 
 ## AWS-CICD-Deployment-with-Github-Actions
@@ -71,9 +77,11 @@ docker pull paragj30/wine-quality-prediction-app
 
 Policy for Identity Access Management (IAM) User with specific access:
 
-	1. AmazonEC2ContainerRegistryFullAccess: ECR Access: Elastic Container registry to save your docker image in AWS.
+    1. AmazonEC2ContainerRegistryFullAccess
+ECR Access: Elastic Container registry to save your docker image in AWS.
 
-	2. AmazonEC2FullAccess: EC2 access : It is virtual machine.
+    2. AmazonEC2FullAccess
+EC2 access : It is virtual machine.
 
 
 ### 2. Create and download the Access key and Secret access key to authenticate the GitHub Action with AWS account.
