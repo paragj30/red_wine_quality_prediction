@@ -50,10 +50,6 @@ python app.py
 
 6. Open the web browser and copy past the link below:
 ```bash
-0.0.0.0:8080
-```
-or
-```bash
 127.0.0.1:8080
 ```
 
