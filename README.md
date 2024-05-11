@@ -15,40 +15,67 @@
 
 ## How to run?
 
-### STEPS:
+### Option 1:
+#### STEPS:
 
+1. Create a virtual environment for this application.
 ```bash
 conda create -p venv python=3.10 -y
 ```
 
+2. Activate the virtual environment.
 ```bash
 conda activate venv/
 ```
 
+3. Clone this GitHub Repository.
 ```bash
 git clone https://github.com/paragj30/red_wine_quality_prediction.git
 ```
 
+4. Enter inside the red_wine_quality_prediction folder.
+```bash
+cd \folder_location
+```
+
+4. Install all the libraries and dependencies present in the "requirements.txt" file.
 ```bash
 pip install -r "requirements.txt"
 ```
 
+5. Run the application.
 ```bash
 python app.py
 ```
 
+6. Open the web browser and copy past the link below:
 ```bash
-Open the local host i.e., 0.0.0.0:8080
+0.0.0.0:8080
+```
+or
+```bash
+127.0.0.1:8080
 ```
 
-Or download the docker image:
+
+### Option 2:
+#### STEPS:
+
+1. Open the Docker Desktop
+
+2. Download the docker image:
 ```bash
 docker pull paragj30/wine-quality-prediction-app:latest
 ```
 
-And run the docker image:
+3. Run the docker image command:
 ```bash
 docker run -d -p 8080:8080 paragj30/wine-quality-prediction-app
+```
+
+4. Open the web browser and copy past the link below:
+```bash
+127.0.0.1:8080
 ```
 
 
@@ -97,9 +124,9 @@ EC2 access : It is virtual machine.
 
 ### 3. Create ECR repository to store/save docker image
 
-- AWS_ECR_LOGIN_URI: Save the URI of our docker repository. This repository will be accessible to GitHub Action through this URI.
+1. AWS_ECR_LOGIN_URI: Save the URI of our docker repository. This repository will be accessible to GitHub Action through this URI.
 
-- ECR_REPOSITORY_NAME: Save the name of the docker repository.
+2. ECR_REPOSITORY_NAME: Save the name of the docker repository.
 
 
 
@@ -174,15 +201,15 @@ To check the docker images
 
 ### 6. Configure EC2 as self-hosted runner:
 
-- Self-hosted runner is a another VM Instance present on GitHub. So we will make a EC2 Instance as Self-hosted runner, that will make a connection with GitHub to pull the updated changes from GitHub to EC2 Instance.
+1. Self-hosted runner is a another VM Instance present on GitHub. So we will make a EC2 Instance as Self-hosted runner, that will make a connection with GitHub to pull the updated changes from GitHub to EC2 Instance.
 
     
-- github_project>Setting>Actions>Runner>New self-hosted runner> choose os> then copy, paste and run command one by one on 'EC2 Instance Connect Terminal' to make the connection with GitHub.
+2. github_project>Setting>Actions>Runner>New self-hosted runner> choose os> then copy, paste and run command one by one on 'EC2 Instance Connect Terminal' to make the connection with GitHub.
 
     
-    - Enter the name of runner: self-hosted
+    2.1 Enter the name of runner: self-hosted
     
-- Make sure that the status of the 'self-hosted' runner is always "Idle": GitHub is connected to the EC2 Instance.
+3. Make sure that the status of the 'self-hosted' runner is always "Idle": GitHub is connected to the EC2 Instance.
 
 
 
@@ -206,16 +233,16 @@ github_project>Setting>Actions>Secrets and variables > Actions > New repository 
 
 ### 8. Setup .github/workflows directory inside the GitHub repository:
 
-- By default GitHub Actions will search the '.github/workflows' directory.
+1. By default GitHub Actions will search the '.github/workflows' directory.
 
-- Create the CICD.yaml and define workflow in that file.
+2. Create the CICD.yaml and define workflow in that file.
 
 
 ### 9. Open the Public URL of the Application
 
-- Open EC2 Instance and copy the Pubic IPv4 address and paste it in the browser URL:8080
+1. Open EC2 Instance and copy the Pubic IPv4 address and paste it in the browser URL:8080
 
-- Successfully deployed the application.
+2. Successfully deployed the application.
 
 
 ### 10. Change the URL.
