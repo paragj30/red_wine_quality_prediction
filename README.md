@@ -43,6 +43,17 @@ Open the local host i.e., 0.0.0.0:8080
 
 
 
+## Description: About the deployment
+
+	1. Build docker image of the source code
+
+	2. Push your docker image to Elastic Container Registry (ECR) 
+
+	3. Launch Your EC2 Instance
+
+	4. Pull the image from ECR in EC2 Instance
+
+	5. Lauch your docker image in EC2 Instance
 
 
 ## AWS-CICD-Deployment-with-Github-Actions
@@ -68,6 +79,7 @@ Open the local host i.e., 0.0.0.0:8080
 
 
 ### 3. Create ECR repository to store/save docker image
+
     - AWS_ECR_LOGIN_URI: Save the URI of our docker repository. This repository will be accessible to GitHub Action through this URI.
 
     - ECR_REPOSITORY_NAME: Save the name of the docker repository.
@@ -94,14 +106,11 @@ Open the local host i.e., 0.0.0.0:8080
 
 ### 5. Open EC2 and Install docker in EC2 Machine:
 	
-    #check if any external packages are installed or not
-    ls
+    ls #check if any external packages are installed or not
 
     clear 
 
-	#update the Virtual machine instance
-
-	sudo apt-get update -y #To update the all package manager and dependencies
+	sudo apt-get update -y #To update the all package manager and dependencies in VM Instane
 
 	sudo apt-get upgrade #To install the package manager and dependencies
 
@@ -130,21 +139,21 @@ Open the local host i.e., 0.0.0.0:8080
 
 
 ### 6. Configure EC2 as self-hosted runner:
-    #Self-hosted runner is a another VM Instance present on GitHub. So we will make a EC2 Instance as Self-hosted runner, that will make a connection with GitHub to pull the updated changes from GitHub to EC2 Instance.
+
+    Self-hosted runner is a another VM Instance present on GitHub. So we will make a EC2 Instance as Self-hosted runner, that will make a connection with GitHub to pull the updated changes from GitHub to EC2 Instance.
 
     github_project>Setting>Actions>Runner>New self-hosted runner> choose os> then copy, paste and run command one by one on 'EC2 Instance Connect Terminal' to make the connection with GitHub.
 
-    ```bash
+    
     Enter the name of runner: self-hosted
-    ```
-
+    
     Make sure that the status of the 'self-hosted' runner is always "Idle": GitHub is connected to the EC2 Instance.
 
 
 
 ### 7. Setup github secrets:
 
-    # So that GitHub can access the EC2 Instance.
+    -So that GitHub can access the EC2 Instance.
 
     github_project>Setting>Actions>Secrets and variables > Actions > New repository secret > Add the below informations:
  
@@ -165,17 +174,3 @@ Open the local host i.e., 0.0.0.0:8080
     -By default GitHub Actions will search the '.github/workflows' directory.
 
     -Create the CICD.yaml and define workflow in that file.
-
-
-	#Description: About the deployment
-
-	1. Build docker image of the source code
-
-	2. Push your docker image to Elastic Container Registry (ECR) 
-
-	3. Launch Your EC2 Instance
-
-	4. Pull the image from ECR in EC2 Instance
-
-	5. Lauch your docker image in EC2 Instance
-
