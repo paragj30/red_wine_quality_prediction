@@ -1,8 +1,8 @@
-from src.mlproject.config.configuration import ConfigurationManager
-from src.mlproject.components.model_training import ModelTrainer
-from src.mlproject import logger
+from mlproject.config.configuration import ConfigurationManager
+from mlproject.components.model_training import ModelTrainer
+from mlproject import logger
 import sys
-from src.mlproject.exception import CustomException
+from mlproject.exception import CustomException
 
 
 STAGE_NAME = "Model Trainer stage"
@@ -16,8 +16,8 @@ class ModelTrainerTrainingPipeline:
         config = ConfigurationManager()
         model_trainer_config = config.get_model_trainer_config()
         model_trainer_config = ModelTrainer(config=model_trainer_config)
-        model_trainer_config.train()
-
+        model_trainer_config.data_spliting()
+        model_trainer_config.hyper_parameter_tunning()
 
 
 if __name__ == '__main__':

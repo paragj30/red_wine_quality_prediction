@@ -1,6 +1,6 @@
-from src.mlproject.config.configuration import ConfigurationManager
-from src.mlproject.components.data_transformation import DataTransformation
-from src.mlproject import logger
+from mlproject.config.configuration import ConfigurationManager
+from mlproject.components.data_transformation import DataTransformation
+from mlproject import logger
 from pathlib import Path
 
 
@@ -22,6 +22,8 @@ class DataTransformationTrainingPipeline:
                 data_transformation_config = config.get_data_transformation_config()
                 data_transformation = DataTransformation(config=data_transformation_config)
                 data_transformation.train_test_spliting()
+                data_transformation.get_data_transformer_object()
+                data_transformation.initiate_data_transormation()
 
             else:
                 raise Exception("You data schema is not valid")

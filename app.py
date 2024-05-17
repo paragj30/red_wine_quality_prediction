@@ -2,8 +2,10 @@ from flask import Flask, render_template, request
 import os 
 import numpy as np
 import pandas as pd
-from src.mlproject.pipelines.prediction import PredictionPipeline
-
+from mlproject.pipelines.prediction import PredictionPipeline, CustomData
+from mlproject.exception import CustomException
+import sys
+from mlproject import logger
 
 app = Flask(__name__) # initializing a flask app
 
@@ -24,30 +26,30 @@ def index():
     if request.method == 'POST':
         try:
             #  reading the inputs given by the user
-            fixed_acidity =float(request.form['fixed_acidity'])
-            volatile_acidity =float(request.form['volatile_acidity'])
-            citric_acid =float(request.form['citric_acid'])
-            residual_sugar =float(request.form['residual_sugar'])
-            chlorides =float(request.form['chlorides'])
-            free_sulfur_dioxide =float(request.form['free_sulfur_dioxide'])
-            total_sulfur_dioxide =float(request.form['total_sulfur_dioxide'])
-            density =float(request.form['density'])
-            pH =float(request.form['pH'])
-            sulphates =float(request.form['sulphates'])
-            alcohol =float(request.form['alcohol'])
+            data = CustomData(
+                 fixed_acidity =float(request.form['fixed_acidity']),
+                 volatile_acidity =float(request.form['volatile_acidity']),
+                 citric_acid =float(request.form['citric_acid']),
+                 residual_sugar =float(request.form['residual_sugar']),
+                 chlorides =float(request.form['chlorides']),
+                 free_sulfur_dioxide =float(request.form['free_sulfur_dioxide']),
+                 total_sulfur_dioxide =float(request.form['total_sulfur_dioxide']),
+                 density =float(request.form['density']),
+                 pH =float(request.form['pH']),
+                 sulphates =float(request.form['sulphates']),
+                 alcohol =float(request.form['alcohol']))
        
-         
-            data = [fixed_acidity,volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,density,pH,sulphates,alcohol]
-            data = np.array(data).reshape(1, 11)
+            pred_df = data.get_data_as_data_frame()
+            predict_pipeline = PredictionPipeline()
+            logger.info("Mid Prediction")
+            results=predict_pipeline.predict(pred_df)
+            logger.info(f'Prediction Result: {results}')
+            return render_template('results.html', prediction = str(results))
+
             
-            obj = PredictionPipeline()
-            predict = obj.predict(data)
-
-            return render_template('results.html', prediction = str(predict))
-
         except Exception as e:
-            print('The Exception message is: ',e)
-            return 'something is wrong'
+            CustomException(e, sys)
+            return 'Something is wrong with code'
 
     else:
         return render_template('index.html')
@@ -55,4 +57,4 @@ def index():
 
 
 if __name__ == "__main__":
-	app.run(host="0.0.0.0", port = 8080)
+	app.run(host="0.0.0.0", port = 8080, debug=True)

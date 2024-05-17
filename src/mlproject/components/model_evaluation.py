@@ -1,12 +1,12 @@
 import os
 import pandas as pd
-from src.mlproject.entity.config_entity import ModelEvaluationConfig
+from mlproject.entity.config_entity import ModelEvaluationConfig
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 from urllib.parse import urlparse
 import numpy as np
 import joblib
 from pathlib import Path
-from src.mlproject.utils.common import save_json
+from mlproject.utils.common import save_json
 
 
 class ModelEvaluation:
@@ -22,11 +22,11 @@ class ModelEvaluation:
     
     def save_results(self):
 
-        test_data = pd.read_csv(self.config.test_data_path)
+        df_test = pd.read_csv(self.config.test_data_path)
         model = joblib.load(self.config.model_path)
 
-        X_test = test_data.drop([self.config.target_column], axis=1)
-        y_test = test_data[[self.config.target_column]]
+        X_test = df_test.iloc[:, :-1]
+        y_test = df_test.iloc[:, -1]
         
         y_predict = model.predict(X_test)
 

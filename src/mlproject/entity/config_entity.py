@@ -29,6 +29,9 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     data_path: Path
+    features_column: list
+    target_column: str
+    preprocessor_name: str
 
 
 
@@ -38,13 +41,8 @@ class ModelTrainerConfig:
     train_data_path: Path
     test_data_path: Path
     model_name: str
-#   alpha: float
-#    l1_ratio: float
-    n_estimators: int 
-    min_samples_split: int
-    max_features: float
-    max_depth: int
-    criterion: str
+    params: dict
+    ml_models: object
     target_column: str
 
 
@@ -54,6 +52,5 @@ class ModelEvaluationConfig:
     root_dir: Path
     test_data_path: Path
     model_path: Path
-    all_params: dict
     metric_file_name: Path
     target_column: str

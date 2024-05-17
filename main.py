@@ -1,11 +1,11 @@
-from src.mlproject import logger
-from src.mlproject.pipelines.stage_01_data_ingestion import DataIngestionTrainingPipeline
-from src.mlproject.pipelines.stage_02_data_validation import DataValidationTrainingPipeline
-from src.mlproject.pipelines.stage_03_data_transformation import DataTransformationTrainingPipeline
-from src.mlproject.pipelines.stage_04_model_training import ModelTrainerTrainingPipeline
-from src.mlproject.pipelines.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
+from mlproject import logger
+from mlproject.pipelines.stage_01_data_ingestion import DataIngestionTrainingPipeline
+from mlproject.pipelines.stage_02_data_validation import DataValidationTrainingPipeline
+from mlproject.pipelines.stage_03_data_transformation import DataTransformationTrainingPipeline
+from mlproject.pipelines.stage_04_model_training import ModelTrainerTrainingPipeline
+from mlproject.pipelines.stage_05_model_evaluation import ModelEvaluationTrainingPipeline
 import sys
-from src.mlproject.exception import CustomException
+from mlproject.exception import CustomException
 
 STAGE_NAME = "Data Ingestion stage"
 try:
