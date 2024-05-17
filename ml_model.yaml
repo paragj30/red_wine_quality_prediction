@@ -1,0 +1,4 @@
+Random Forest: RandomForestRegressor
+Decision Tree: DecisionTreeRegressor
+Gradient Boosting: GradientBoostingRegressor
+AdaBoost Regressor: AdaBoostRegressor
