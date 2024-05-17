@@ -12,11 +12,10 @@ class PredictionPipeline:
     def __init__(self):
         pass
 
-
     
     def predict(self, data):
         try:
-            preprocessor = load_bin(Path('artifacts/data_transformation\preprocessor.joblib'))
+            preprocessor = load_bin(Path('artifacts/data_transformation/preprocessor.joblib'))
             logger.info(f'Preprocessor object has been loaded{preprocessor}')
 
             model = load_bin(Path('artifacts/model_trainer/model.joblib'))

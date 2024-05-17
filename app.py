@@ -44,6 +44,7 @@ def index():
             logger.info("Mid Prediction")
             results=predict_pipeline.predict(pred_df)
             logger.info(f'Prediction Result: {results}')
+            
             return render_template('results.html', prediction = str(results))
 
             
