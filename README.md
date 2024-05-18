@@ -1,5 +1,115 @@
 # This is end to end wine quality prediction Machine learning project.
 
+## Technologies Used
+
+[<img target="_blank" src="https://flask.palletsprojects.com/en/1.1.x/_images/flask-logo.png" width=170>](https://flask.palletsprojects.com/en/1.1.x/) [<img target="_blank" src="https://number1.co.za/wp-content/uploads/2017/10/gunicorn_logo-300x85.png" width=280>](https://gunicorn.org) [<img target="_blank" src="https://scikit-learn.org/stable/_static/scikit-learn-logo-small.png" width=200>](https://scikit-learn.org/stable/) 
+<p>
+<a><img src="https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=darkgreen" alt="python"/></a>
+<a><img src="https://img.shields.io/badge/Pandas-2C2D72?style=for-the-badge&logo=pandas&logoColor=white" alt="pandas"/></a>
+<a><img src="https://img.shields.io/badge/Numpy-777BB4?style=for-the-badge&logo=numpy&logoColor=white" alt="numpy"/></a>
+<a><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)" alt="docker"/></a>
+</p>
+
+
+## Problem statement
+
+This project focuses on predicting the quality of red wine using a regression model based on various chemical properties. The dataset, sourced from Kaggle, contains multiple features that describe the characteristics of red wine samples. The primary objective is to build a model that can accurately predict the quality of wine, which is rated on a scale from 0 to 10, using these features.
+
+## Demo
+
+![Hone Page](./app-results/home-page.png)
+![Prediction Page](./app-results/prediction-result.png)
+
+## Dataset Used
+Dataset Description
+The dataset consists of 12 columns, each representing a distinct attribute of the red wine samples:
+
+**The dataset** The goal is to predict `quality` of given wine (Regression Analysis).
+
+There are 11 independent variables:
+1.  `Fixed Acidity`: The amount of non-volatile acids in the wine, mainly tartaric acid.
+2. `Volatile Acidity`: The amount of acetic acid in the wine, which at high levels can lead to an unpleasant vinegar taste.
+3. `Citric Acid`: A small amount of citric acid can add freshness and flavor to the wine.
+4. `Residual Sugar`: The amount of sugar remaining after fermentation stops, influencing the sweetness of the wine.
+5. `Chlorides`: The amount of salt in the wine.
+6. `Free Sulfur Dioxide`: The free form of SO2, which acts as an antimicrobial and antioxidant.
+7. `Total Sulfur Dioxide`: The total amount of SO2, which includes both free and bound forms.
+8. `Density`: The density of the wine, which is closely related to the alcohol content and sugar level.
+9. `pH`: Describes the acidity or alkalinity of the wine.
+10. `Sulphates`: A wine additive that can contribute to the wine's sulfur dioxide levels, affecting its freshness and stability.
+11. `Alcohol`: The alcohol content of the wine, contributing to its body and taste.
+
+Target variable:
+
+12. `Quality`: The target variable, which is the quality score assigned to the wine, ranging from 0 (very poor) to 10 (excellent).
+
+Dataset Link :
+[Dataset Link](https://www.kaggle.com/datasets/yasserh/wine-quality-dataset)
+
+
+## Methodology
+### Data Preprocessing:
+- Handling missing values, if any.
+- Scaling features to ensure uniformity and improve model performance.
+- Splitting the dataset into training and testing sets to evaluate the model's performance.
+### Exploratory Data Analysis (EDA):
+
+- Analyzing the distribution of each feature.
+- Investigating correlations between features and the target variable.
+- Visualizing relationships through scatter plots, histograms, and heatmaps.
+### Model Selection:
+
+- Experimenting with various regression algorithms such as Linear Regression, Decision Tree Regression, Random Forest Regression, and Gradient Boosting Regression.
+- Using cross-validation techniques to fine-tune hyperparameters and prevent overfitting.
+### Model Evaluation:
+
+- Assessing model performance using metrics such as Mean Squared Error (MSE), Root Mean Squared Error (RMSE), and R-squared (R²) score.
+- Comparing the performance of different models to select the best one for predicting wine quality.
+### Model Deployment:
+
+- Finalizing the best model.
+- Implementing the model in a production environment where it can be used to predict the quality of new wine samples based on their chemical properties.
+
+
+
+## After finalizing the model, Industry standard object oriented programming approach for the project 
+
+1. Data Ingestion : 
+    * In Data Ingestion phase the data is first read as csv. 
+    * Then the data is split into training and testing and saved as csv file.
+
+2. Data Transformation : 
+    * In this phase a ColumnTransformer Pipeline is created.
+    * for Numerical Variables first SimpleImputer is applied with strategy median , then Standard Scaling is performed on numeric data.
+    * for Categorical Variables: There were no categorical variables.
+    * This preprocessor is saved as pickle file.
+
+3. Model Training : 
+    * In this phase base model is tested. The best model found was DecisionTreeRegressor.
+    * After this hyperparameter tuning is performed on DecisionTreeRegressor and multiple model to get the best training r2 score.
+    * A final DecisionTreeRegressor is selected.
+    * This model is saved as pickle file.
+
+4. Prediction Pipeline : 
+    * This pipeline converts given data into dataframe and has various functions to load pickle files and predict the final results in python.
+
+5. Flask App creation : 
+    * Flask app is created with User Interface to predict the gemstone prices inside a Web Application.
+6. Dockerization of the app :   
+    * Dockerized the entire application using Docker tool and uploaded the docker image on Docker hub repository.
+7. Deployment of the app :  
+    * A Web Application is delpoyed on the AWS EC2 Instance.
+8. CI/CD using GitHub Action:  
+    * CI/CD pipeline is deployed using GitHub Action on the AWS EC2 Instance.
+
+## Exploratory Data Analysis Notebook
+
+Link : [EDA Notebook](./research/EDA.ipynb) 
+
+# Model Training Approach Notebook
+
+Link : [Model Training Notebook](./research/model_training_experiment.ipynb)
+
 ## Workflow
 
 1. Update the config.yaml  
